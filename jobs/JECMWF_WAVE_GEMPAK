@@ -1,0 +1,127 @@
+#!/bin/ksh
+# JY - will see if needs to change ksh to sh, will pay attention to typeset line in the script
+#
+#
+
+########################################
+# Runs ECMWF Wave post processing
+########################################
+
+set -x
+export PS4='$SECONDS + '
+date
+
+#
+# obtain unique process id (pid) and make temp directories
+#
+export pid=$$
+export jobid=${jobid:-LL${job}.o${pid}}
+export DATA=${DATA:-${DATAROOT}/${jobid}}
+mkdir -p $DATA
+cd $DATA
+
+# Specifically for testing ECMWF upgrade where the file name changes 
+# Normally the file ends in 1 with test data that becomes 75
+export ECMWF_FILE_EXT=${ECMWF_FILE_EXT:-1}
+
+####################################
+# File To Log Msgs
+####################################
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${jobid}}
+
+####################################
+# Determine Job Output Name on System
+####################################
+export pgmout="OUTPUT.${pid}"
+
+export cycle=t${cyc}z
+
+export SENDCOM=${SENDCOM:-YES}
+export SENDDBN=${SENDDBN:-YES}
+export SENDECF=${SENDECF:-YES}
+
+#
+# Now set up GEMPAK/NTRANS environment
+#
+#done in ecflow script
+#module load gempak 
+
+#
+# Set up variables
+#
+#export HOMEecmwf=${HOMEecmwf:-${NWROOT}/ecmwf.${ecmwf_ver}}
+export GEMPAKecmwf=${GEMPAKecmwf:-$HOMEecmwf/gempak}
+
+# Run setpdy and initialize PDY variables
+setpdy.sh
+. ./PDY
+
+#
+# Set up model and cycle specific variables
+#
+export NET=ecmwf
+export RUN=ecmwf_wave
+export model=ecmwf_wave
+export GRIB=pgrb
+export EXT=""
+export DBN_ALERT_TYPE=${DBN_ALERT_TYPE:-ECMWF_WAVE_GEMPAK}
+export fstart=0
+export fend=240
+export finc=3  # changes to 6 when fhrcnt reaches 144
+
+env
+
+#export DCOMIN=${DCOMROOT}/prod/${PDY}/wgrbbul/ecmwf
+#export COMOUT=${COMROOT}/${NET}/${envir}/${NET}.${PDY}/gempak
+export DCOMIN=${DCOMROOT}/${PDY}/wgrbbul/ecmwf
+export COMOUT=${COMOUT:-$(compath.py -o ${NET}/${ecmwf_ver}/${NET}.${PDY})/gempak}
+
+if [ ! -f $COMOUT ] ; then
+  mkdir -p -m 775 $COMOUT
+fi
+
+
+#
+# Make sym links to NCEP-like named files
+#
+fhrcnt=0
+refdate=`echo ${PDY}${cyc}| cut -c5-`
+while [ $fhrcnt -le $fend ] ; do
+    if [ $fhrcnt -ge 100 ] ; then
+    typeset -Z3 fhr
+  else
+    typeset -Z2 fhr
+  fi
+  fhr=$fhrcnt
+  fcst_date=`$NDATE $fhrcnt ${PDY}${cyc}|cut -c5-`
+  # W1P are the deterministic wave
+  if [ $fhrcnt -eq 0 ] ; then
+      ln -sf $DCOMIN/W1P${refdate}00${fcst_date}01${ECMWF_FILE_EXT} $DATA/${RUN}.${cycle}.${GRIB}${fhr}
+  else
+      ln -sf $DCOMIN/W1P${refdate}00${fcst_date}00${ECMWF_FILE_EXT} $DATA/${RUN}.${cycle}.${GRIB}${fhr}
+  fi
+  [ $fhrcnt -eq 144 ] && finc=6
+  let fhrcnt=fhrcnt+finc
+done
+finc=3 # back to the initial value for the loop in scripts/exnawips_ecmwf.sh
+
+#
+# Copy in custom GEMPAK tables
+#
+cp $GEMPAKecmwf/fix/nagrib.tbl nagrib.tbl
+cp $GEMPAKecmwf/fix/ecmwf_wave_grib.tbl ecmwf_wave_grib.tbl
+
+########################################################
+# Execute the script.
+$HOMEecmwf/scripts/exnawips_ecmwf.sh
+########################################################
+
+if [ -e "$pgmout" ]; then
+   cat $pgmout
+fi
+
+if [ "${KEEPDATA}" != "YES" ]; then
+   rm -rf $DATA
+fi
+
+date

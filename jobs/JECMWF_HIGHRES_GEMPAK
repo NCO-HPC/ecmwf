@@ -1,0 +1,118 @@
+#!/bin/ksh
+# JY- will see if need to change ksh to sh, make sure changing the typeset line in script
+# 08/06
+#
+
+
+set -x
+export PS4='$SECONDS + '
+date
+#
+# obtain unique process id (pid) and make temp directories
+#
+export pid=$$
+export jobid=${jobid:-LL${job}.o${pid}}
+export DATA=${DATA:-${DATAROOT}/${jobid}}
+mkdir $DATA
+cd $DATA
+
+# Specifically for testing ECMWF upgrade where the file name changes 
+# Normally the file ends in 1 with test data that becomes 75
+export ECMWF_FILE_EXT=${ECMWF_FILE_EXT:-1}
+
+####################################
+# File To Log Msgs
+####################################
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${jobid}}
+
+####################################
+# Determine Job Output Name on System
+####################################
+export pgmout="OUTPUT.${pid}"
+
+export cycle=t${cyc}z
+
+export SENDCOM=${SENDCOM:-YES}
+export SENDDBN=${SENDDBN:-YES}
+export SENDECF=${SENDECF:-YES}
+
+#
+# Now set up GEMPAK/NTRANS environment
+#
+#done in ecflow script
+#module load gempak 
+
+#
+#Set up Variables
+#
+#export HOMEecmwf=${HOMEecmwf:-${NWROOT}/ecmwf.${ecmwf_ver}}
+export GEMPAKecmwf=${GEMPAKecmwf:-$HOMEecmwf/gempak}
+
+# Run setpdy and initialize PDY variables
+setpdy.sh
+. ./PDY
+
+#
+# Set up model and cycle specific variables
+#
+export NET=ecmwf
+export RUN=ecmwf_hr
+export model=ecmwf_hr
+export GRIB=pgrb
+export EXT=""
+export DBN_ALERT_TYPE=${DBN_ALERT_TYPE:-ECMWF_HR_GEMPAK}
+export fstart=0
+export fend=240
+export finc=6
+
+env
+
+#export DCOMIN=${DCOMROOT}/prod/${PDY}/wgrbbul/ecmwf
+#export COMOUT=${COMROOT}/${NET}/${envir}/${NET}.${PDY}/gempak
+export DCOMIN=${DCOMROOT}/${PDY}/wgrbbul/ecmwf
+#export COMOUT=${COMOUT:-$(compath.py ${NET}/${ecmwf_ver})/${NET}.${PDY}/gempak}
+export COMOUT=${COMOUT:-$(compath.py -o ${NET}/${ecmwf_ver}/${NET}.${PDY})/gempak}
+
+if [ ! -f $COMOUT ] ; then
+  mkdir -p -m 775 $COMOUT
+fi
+
+
+#
+# Make sym links to NCEP-like named files
+#
+fhrcnt=0
+refdate=`echo ${PDY}${cyc}| cut -c5-`
+while [ $fhrcnt -le $fend ] ; do
+    if [ $fhrcnt -ge 100 ] ; then
+    typeset -Z3 fhr
+  else
+    typeset -Z2 fhr
+  fi
+  fhr=$fhrcnt
+  fcst_date=`$NDATE $fhrcnt ${PDY}${cyc}|cut -c5-`
+  ln -sf $DCOMIN/DCD${refdate}00${fcst_date}00${ECMWF_FILE_EXT} $DATA/${RUN}.${cycle}.${GRIB}${fhr}
+  let fhrcnt=fhrcnt+finc
+done
+
+#
+# Copy in custom GEMPAK tables
+#
+cp $GEMPAKecmwf/fix/ecmwfhr_ecmwfgrib128.tbl ecmwfgrib128.tbl
+cp $GEMPAKecmwf/fix/ecmwfhr_vcrdgrib1.tbl vcrdgrib1.tbl
+
+########################################################
+# Execute the script.
+$HOMEecmwf/scripts/exnawips_ecmwf.sh
+########################################################
+
+if [ -e "$pgmout" ]; then
+   cat $pgmout
+fi
+
+if [ "${KEEPDATA}" != "YES" ]; then
+   rm -rf $DATA
+fi
+
+date
+

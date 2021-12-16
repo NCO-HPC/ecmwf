@@ -1,0 +1,34 @@
+#PBS -N ecmwf_wave_gempak_%CYC%
+#PBS -j oe
+#PBS -S /bin/bash
+#PBS -q %QUEUE%
+#PBS -l walltime=00:35:00
+#PBS -l select=1:ncpus=1:mem=500MB 
+#PBS -A %PROJ%-%PROJENVIR%
+#PBS -l debug=true
+
+model=ecmwf
+%include <head.h>
+%include <envir-p1.h>
+
+# EXPORT list here
+export cyc=%CYC%
+
+module load intel/$intel_ver
+module load gempak/${gempak_ver:?}
+
+# CALL executable job script here
+${HOMEecmwf:?}/jobs/JECMWF_WAVE_GEMPAK
+
+%include <tail.h>
+%manual
+######################################################################
+# Purpose: To submit the job creates ECMWF WAVE GEMPAK grids.
+######################################################################
+######################################################################
+# Job specific troubleshooting instructions:
+#  see generic troubleshoot manual page
+#
+######################################################################
+# include manual page below
+%end

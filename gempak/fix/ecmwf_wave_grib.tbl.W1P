@@ -1,0 +1,53 @@
+!
+! ecmwf_wave_ecmwfgrib128.tbl -- GRIB 1 parameter conversion table for ecmwf deterministic wave
+!
+!ID# NAME                             UNITS                GNAM         SCALE   MISSING  HZREMAP DIRECTION
+!
+!
+!100 Sig hght of comb wind waves/swell m                    HTSGW            0  -9999.00       0         0
+!101 Direction of wind waves           Degree true          DRCTWW           0  -9999.00       0         1
+!102 Significant hght of wind waves    m                    HGHTWW           0  -9999.00       0         0
+!103 Mean period of wind waves         s                    PERDWW           0  -9999.00       0         0
+!104 Direction of swell waves          Degree true          DRCTSW           0  -9999.00       0         1
+!105 Significant hght of swell waves   m                    HGHTSW           0  -9999.00       0         0
+!106 Mean period of swell waves        s                    PERDSW           0  -9999.00       0         0
+!107 Primary wave direction            Degree true          DRCTPW           0  -9999.00       0         1
+!108 Primary wave mean period          s                    PERDPW           0  -9999.00       0         0
+!109 Secondary wave direction          Degree true          DRCTSW           0  -9999.00       0         1
+!110 Secondary wave mean period        s                    PERDSW           0  -9999.00       0         0
+!
+! parm details: http://apps.ecmwf.int/codes/grib/param-db?id=140119 (replace last 3 digits in URL)
+112 Wave energy flux magnitude        W m**-1              WEFXM            0  -9999.00       0         0
+113 Wave energy flux mean direction   Degree true          WEFXD            0  -9999.00       0         0
+114 Sig wave hght w prd 10 to 12s     m                    H1012            0  -9999.00       0         0
+115 Sig wave hght w prd 12 to 14s     m                    H1214            0  -9999.00       0         0
+116 Sig wave hght w prd 14 to 17s     m                    H1417            0  -9999.00       0         0
+117 Sig wave hght w prd 17 to 21s     m                    H1721            0  -9999.00       0         0
+118 Sig wave hght w prd 21 to 25s     m                    H2125            0  -9999.00       0         0
+119 Sig wave hght w prd 25 to 30s     m                    H2530            0  -9999.00       0         0
+215 U-component stokes drift          m s**-1              UST              0  -9999.00       0         0
+216 V-component stokes drift          m s**-1              VST              0  -9999.00       0         0
+! From the theory of wave height distribution that includes non-linear effects, the estimation value of the largest single wave height in a record of 20 minutes is derived. The theory also determins the corresponding period of the wave with the largest wave height.
+217 Period of max wave height         s                    PERMAX           0  -9999.00       0         0
+218 Maximum individual wave height    m                    HGTMAX           0  -9999.00       0         0
+!
+221 Secondary mean wave period        s                    PERW2            0  -9999.00       0         0
+223 Primary mean wind wave period     s                    PERWW1           0  -9999.00       0         0
+224 Secondary mean wind wave period   s                    PERWW2           0  -9999.00       0         0
+225 Spectral dir width wind wave      -                    SDWWW            0  -9999.00       0         0
+226 Primary mean swell period         s                    PERSW1           0  -9999.00       0         0
+227 Secondary mean swell period       s                    PERSW2           0  -9999.00       0         0
+229 Sig hght of comb wind waves/swell m                    HTSGW            0  -9999.00       0         0
+230 Primary wave direction            Degree true          DIRPW            0  -9999.00       0         1
+231 Peak period of 1D spectra         s                    PER1DS           0  -9999.00       0         0
+232 Primary wave mean period          s                    PERPW            0  -9999.00       0         0
+234 Significant hght of wind waves    m                    WVHGT            0  -9999.00       0         0
+235 Direction of wind waves           Degree true          WVDIR            0  -9999.00       0         1
+236 Mean period of wind waves         s                    WVPER            0  -9999.00       0         0
+237 Significant hght of swell waves   m                    SWELL            0  -9999.00       0         0
+238 Direction of swell waves          Degree true          SWDIR            0  -9999.00       0         1
+239 Mean period of swell waves        s                    SWPER            0  -9999.00       0         0
+244 Mean square wave slope            -                    M2SPW            0  -9999.00       0         0
+245 10 metre wind speed               m s**-1              SPED             0  -9999.00       0         0
+246 Altimeter wave height             m                    AWVH             0  -9999.00       0         0
+247 Altimeter corrected wave height   m                    ACWVH            0  -9999.00       0         0

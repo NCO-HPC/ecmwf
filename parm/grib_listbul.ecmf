@@ -1,0 +1,137 @@
+grdbul   ECMF      NO OF FILES =  2                                             
+FILE01                                                                          
+HUEA85   EFGH                A              5    850 MB U   T BAND  1           
+HUEA20   EFGH                A              5    200 MB U   T BAND  1           
+HVEA85   EFGH                A              5    850 MB V   T BAND  1           
+HVEA20   EFGH                A              5    200 MB V   T BAND  1           
+HUAA85   ABCDIJKL            A              1    850 MB U   N HEMI  2           
+HUAA70   ABCDIJKL            A              1    700 MB U   N HEMI  2           
+HUAA50   ABCDIJKL            A              1    500 MB U   N HEMI  2           
+HUAA20   ABCDIJKL            A              1    200 MB U   N HEMI  2           
+HVAA85   ABCDIJKL            A              1    850 MB V   N HEMI  2           
+HVAA70   ABCDIJKL            A              1    700 MB V   N HEMI  2           
+HVAA50   ABCDIJKL            A              1    500 MB V   N HEMI  2           
+HVAA20   ABCDIJKL            A              1    200 MB V   N HEMI  2           
+HPAA98   ABCDIJKL            A              1    SFC PRES   N HEMI  2           
+HTAA85   ABCDIJKL            A              1    850 MB TEM N HEMI  2          
+HHAA50   ABCDIJKL            A              1    500 MB HGT N HEMI  2           
+HRAA85   ABCDIJKL            A              1    850 MB R H N HEMI  2
+HRAA70   ABCDIJKL            A              1    700 MB R H N HEMI  2
+HUEA85   EFGH                E              5    850 MB U   T BAND  1           
+HUEA20   EFGH                E              5    200 MB U   T BAND  1           
+HVEA85   EFGH                E              5    850 MB V   T BAND  1           
+HVEA20   EFGH                E              5    200 MB V   T BAND  1           
+HUAA85   ABCDIJKL            E              1    850 MB U   N HEMI  2           
+HUAA70   ABCDIJKL            E              1    700 MB U   N HEMI  2           
+HUAA50   ABCDIJKL            E              1    500 MB U   N HEMI  2           
+HUAA20   ABCDIJKL            E              1    200 MB U   N HEMI  2           
+HVAA85   ABCDIJKL            E              1    850 MB V   N HEMI  2           
+HVAA70   ABCDIJKL            E              1    700 MB V   N HEMI  2           
+HVAA50   ABCDIJKL            E              1    500 MB V   N HEMI  2           
+HVAA20   ABCDIJKL            E              1    200 MB V   N HEMI  2           
+HPAA98   ABCDIJKL            E              1    SFC PRES   N HEMI  2           
+HTAA85   ABCDIJKL            E              1    850 MB TEM N HEMI  2          
+HHAA50   ABCDIJKL            E              1    500 MB HGT N HEMI  2           
+HRAA85   ABCDIJKL            E              1    850 MB R H N HEMI  2
+HRAA70   ABCDIJKL            E              1    700 MB R H N HEMI  2
+HUEA85   EFGH                I              5    850 MB U   T BAND  1           
+HUEA20   EFGH                I              5    200 MB U   T BAND  1           
+HVEA85   EFGH                I              5    850 MB V   T BAND  1           
+HVEA20   EFGH                I              5    200 MB V   T BAND  1           
+HUAA85   ABCDIJKL            I              1    850 MB U   N HEMI  2
+HUAA70   ABCDIJKL            I              1    700 MB U   N HEMI  2
+HUAA50   ABCDIJKL            I              1    500 MB U   N HEMI  2
+HUAA20   ABCDIJKL            I              1    200 MB U   N HEMI  2        
+HVAA85   ABCDIJKL            I              1    850 MB V   N HEMI  2        
+HVAA70   ABCDIJKL            I              1    700 MB V   N HEMI  2        
+HVAA50   ABCDIJKL            I              1    500 MB V   N HEMI  2        
+HVAA20   ABCDIJKL            I              1    200 MB V   N HEMI  2        
+HPAA98   ABCDIJKL            I              1    SFC PRES   N HEMI  2           
+HTAA85   ABCDIJKL            I              1    850 MB TEM N HEMI  2          
+HHAA50   ABCDIJKL            I              1    500 MB HGT N HEMI  2           
+HRAA85   ABCDIJKL            I              1    850 MB R H N HEMI  2
+HRAA70   ABCDIJKL            I              1    700 MB R H N HEMI  2
+HUEA85   EFGH                K              5    850 MB U   T BAND  1
+HUEA20   EFGH                K              5    200 MB U   T BAND  1
+HVEA85   EFGH                K              5    850 MB V   T BAND  1
+HVEA20   EFGH                K              5    200 MB V   T BAND  1
+HUAA85   ABCDIJKL            K              1    850 MB U   N HEMI  2
+HUAA70   ABCDIJKL            K              1    700 MB U   N HEMI  2
+HUAA50   ABCDIJKL            K              1    500 MB U   N HEMI  2
+HUAA20   ABCDIJKL            K              1    200 MB U   N HEMI  2
+HVAA85   ABCDIJKL            K              1    850 MB V   N HEMI  2
+HVAA70   ABCDIJKL            K              1    700 MB V   N HEMI  2
+HVAA50   ABCDIJKL            K              1    500 MB V   N HEMI  2
+HVAA20   ABCDIJKL            K              1    200 MB V   N HEMI  2
+HPAA98   ABCDIJKL            K              1    SFC PRES   N HEMI  2
+HTAA85   ABCDIJKL            K              1    850 MB TEM N HEMI  2
+HHAA50   ABCDIJKL            K              1    500 MB HGT N HEMI  2
+HRAA85   ABCDIJKL            K              1    850 MB R H N HEMI  2
+HRAA70   ABCDIJKL            K              1    700 MB R H N HEMI  2
+HUEA20   EFGH                M              5    200 MB U   T BAND  1
+HVEA20   EFGH                M              5    200 MB V   T BAND  1
+HUAA85   ABCDIJKL            M              1    850 MB U   N HEMI  2
+HUAA70   ABCDIJKL            M              1    700 MB U   N HEMI  2
+HUAA50   ABCDIJKL            M              1    500 MB U   N HEMI  2
+HUAA20   ABCDIJKL            M              1    200 MB U   N HEMI  2
+HVAA85   ABCDIJKL            M              1    850 MB V   N HEMI  2
+HVAA70   ABCDIJKL            M              1    700 MB V   N HEMI  2
+HVAA50   ABCDIJKL            M              1    500 MB V   N HEMI  2
+HVAA20   ABCDIJKL            M              1    200 MB V   N HEMI  2
+HPAA98   ABCDIJKL            M              1    SFC PRES   N HEMI  2           
+HTAA85   ABCDIJKL            M              1    850 MB TEM N HEMI  2
+HHAA50   ABCDIJKL            M              1    500 MB HGT N HEMI  2
+HRAA85   ABCDIJKL            M              1    850 MB R H N HEMI  2
+HRAA70   ABCDIJKL            M              1    700 MB R H N HEMI  2
+HUEA20   EFGH                O              5    200 MB U   T BAND  1
+HVEA20   EFGH                O              5    200 MB V   T BAND  1
+HUAA85   ABCDIJKL            O              1    850 MB U   N HEMI  2
+HUAA70   ABCDIJKL            O              1    700 MB U   N HEMI  2
+HUAA50   ABCDIJKL            O              1    500 MB U   N HEMI  2
+HUAA20   ABCDIJKL            O              1    200 MB U   N HEMI  2
+HVAA85   ABCDIJKL            O              1    850 MB V   N HEMI  2
+HVAA70   ABCDIJKL            O              1    700 MB V   N HEMI  2
+HVAA50   ABCDIJKL            O              1    500 MB V   N HEMI  2
+HVAA20   ABCDIJKL            O              1    200 MB V   N HEMI  2
+HPAA98   ABCDIJKL            O              1    SFC PRES   N HEMI  2
+HTAA85   ABCDIJKL            O              1    850 MB TEM N HEMI  2
+HHAA50   ABCDIJKL            O              1    500 MB HGT N HEMI  2
+HRAA85   ABCDIJKL            O              1    850 MB R H N HEMI  2
+HRAA70   ABCDIJKL            O              1    700 MB R H N HEMI  2
+HUAA85   ABCDIJKL            Q              1    850 MB U   N HEMI  2
+HUAA70   ABCDIJKL            Q              1    700 MB U   N HEMI  2
+HUAA50   ABCDIJKL            Q              1    500 MB U   N HEMI  2
+HUAA20   ABCDIJKL            Q              1    200 MB U   N HEMI  2
+HVAA85   ABCDIJKL            Q              1    850 MB V   N HEMI  2
+HVAA70   ABCDIJKL            Q              1    700 MB V   N HEMI  2
+HVAA50   ABCDIJKL            Q              1    500 MB V   N HEMI  2
+HVAA20   ABCDIJKL            Q              1    200 MB V   N HEMI  2
+HPAA98   ABCDIJKL            Q              1    SFC PRES   N HEMI  2
+HTAA85   ABCDIJKL            Q              1    850 MB TEM N HEMI  2
+HHAA50   ABCDIJKL            Q              1    500 MB HGT N HEMI  2
+HRAA85   ABCDIJKL            Q              1    850 MB R H N HEMI  2
+HRAA70   ABCDIJKL            Q              1    700 MB R H N HEMI  2
+HUAA85   ABCDIJKL            S              1    850 MB U   N HEMI  2
+HUAA70   ABCDIJKL            S              1    700 MB U   N HEMI  2
+HUAA50   ABCDIJKL            S              1    500 MB U   N HEMI  2
+HUAA20   ABCDIJKL            S              1    200 MB U   N HEMI  2
+HVAA85   ABCDIJKL            S              1    850 MB V   N HEMI  2
+HVAA70   ABCDIJKL            S              1    700 MB V   N HEMI  2
+HVAA50   ABCDIJKL            S              1    500 MB V   N HEMI  2
+HVAA20   ABCDIJKL            S              1    200 MB V   N HEMI  2
+HPAA98   ABCDIJKL            S              1    SFC PRES   N HEMI  2
+HTAA85   ABCDIJKL            S              1    850 MB TEM N HEMI  2
+HHAA50   ABCDIJKL            S              1    500 MB HGT N HEMI  2
+HRAA85   ABCDIJKL            S              1    850 MB R H N HEMI  2
+HRAA70   ABCDIJKL            S              1    700 MB R H N HEMI  2
+HHAA50   ABCD                Z              1    500 MB HGT N HEMI  1           
+FILE02                                                                          
+HHAA70   ABCDIJKL            A              1    700 MB HGT N HEMI  2           
+HHAA70   ABCDIJKL            E              1    700 MB HGT N HEMI  2           
+HHAA70   ABCDIJKL            I              1    700 MB HGT N HEMI  2           
+HHAA70   ABCDIJKL            K              1    700 MB HGT N HEMI  2           
+HHAA70   ABCDIJKL            M              1    700 MB HGT N HEMI  2           
+HHAA70   ABCDIJKL            O              1    700 MB HGT N HEMI  2           
+HHAA70   ABCDIJKL            Q              1    700 MB HGT N HEMI  2           
+HHAA70   ABCDIJKL            S              1    700 MB HGT N HEMI  2           
+HHAA70   ABCD                Z              1    700 MB HGT N HEMI  1           

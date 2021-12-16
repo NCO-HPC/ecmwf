@@ -1,0 +1,55 @@
+#PBS -N ecmwf_highres_gempak_%CYC%
+#PBS -j oe
+#PBS -S /bin/bash
+#PBS -q %QUEUE%
+#PBS -l walltime=02:30:00
+#PBS -l select=1:ncpus=1:mem=500MB
+#PBS -A %PROJ%-%PROJENVIR%
+#PBS -l debug=true
+
+model=ecmwf
+%include <head.h>
+%include <envir-p1.h>
+
+# EXPORT list here
+export cyc=%CYC%
+
+module load intel/$intel_ver
+module load gempak/${gempak_ver:?}
+
+# CALL executable job script here
+${HOMEecmwf:?}/jobs/JECMWF_HIGHRES_GEMPAK
+
+%include <tail.h>
+%manual
+######################################################################
+# Purpose: To submit the job creates ECMWF GEMPAK grids.
+######################################################################
+######################################################################
+# Job specific troubleshooting instructions:
+#
+#        ******************************************
+#        *** THIS JOB USES NON OPERATIONAL DATA ***
+#        ******************************************
+#
+#  The data used in this job are received from ECMWF via
+#  NON OPERATIONAL communications paths.  ECMWF ftp's these data to
+#  NCOSRV and the data are mirrored the NCOSRV directory:
+#
+#  /pub/data/model/grid/grib/ecmwf/DCD*.
+#
+#  DBNET on NCOSRV then deliver these data to the CCS under:
+#
+#  /dcom/{YYYYMMDD}/wgrbbul/ecmwf/
+#
+#  If the job fails and these data are not available on either of
+#  these locations, then it is a good bet that the ECMWF was not able
+#  to send them to us.
+#
+#  Try to run the job a little later or set it to complete.  There
+#  is no need to call in additional support or the ECMWF if the data
+#  are not in the above locations.
+#
+######################################################################
+# include manual page below
+%end

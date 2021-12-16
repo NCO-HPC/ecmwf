@@ -1,0 +1,89 @@
+#!/bin/sh
+
+set -x
+export PS4=' $SECONDS + '
+date
+#
+# obtain unique process id (pid) and make temp directories
+#
+export pid=$$
+export jobid=${jobid:-LL${job}.o${pid}}
+export DATA=${DATA:-${DATAROOT}/${jobid}}
+mkdir $DATA
+cd $DATA
+
+# Specifically for testing ECMWF upgrade where the file name changes 
+# Normally the file ends in 1 with test data that becomes 75
+export ECMWF_FILE_EXT=${ECMWF_FILE_EXT:-1}
+
+####################################
+# File To Log Msgs
+####################################
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${jobid}}
+
+####################################
+# Determine Job Output Name on System
+####################################
+export pgmout="OUTPUT.${pid}"
+
+export cycle=t${cyc}z
+
+####################################
+# SENDECF  - Flag Events on SMS
+# SENDDBN  - Issue DBNet Client Calls
+# SENDCOM  - Copy files to /com directory
+# GET_IOPROFILE - Run I/O statistics
+####################################
+export SENDCOM=${SENDCOM:-YES}
+export SENDDBN=${SENDDBN:-YES}
+export SENDECF=${SENDECF:-YES}
+
+#export HOMEecmwf=${HOMEecmwf:-${NWROOT}/ecmwf.${ecmwf_ver}}
+export PARMecmwf=${PARMecmwf:-${HOMEecmwf}/parm}
+
+# Run setpdy and initialize PDY variables
+setpdy.sh
+. ./PDY
+
+#
+# Set up model and cycle specific variables
+#
+export NET=ecmwf
+export RUN=ecmwf_hr
+export model=ecmwf_hr
+export GRIB=pgrb
+export EXT=""
+export DBN_ALERT_TYPE=NTC_LOW
+export fstart=0
+export fend=240
+export finc=6
+
+env
+
+export DCOMIN=${DCOMROOT}/${PDY}/wgrbbul/ecmwf
+# export COMOUT=${COMROOT}/${NET}/${envir}/${NET}.${PDY}/gempak
+#export COMIN_GRBCHK=${COMROOT}/${NET}/${envir}/${NET}.${PDY}/gempak
+export COMOUT=${COMOUT:-$(compath.py -o ${NET}/${ecmwf_ver}/${NET}.${PDY})/gempak}
+#export COMIN_GRBCHK=${COMIN_GRBCHK:-$(compath.py ${NET}/${ecmwf_ver}/${NET}.${PDY})/gempak}
+# JY 09/24 export COMIN_GRBCHK=${COMIN_GRBCHK:-$(compath.py -o ${NET}/${ecmwf_ver}/${NET}.${PDY})/gempak}
+export COMIN_GRBCHK=${COMIN_GRBCHK:-$(compath.py ${envir}/${NET}/${ecmwf_ver})/${NET}.${PDY}/gempak}
+export pcom=${pcom:-$(compath.py -o ${NET}/${ecmwf_ver}/${NET}.${PDY})/wmo}
+
+if [ ! -f $COMOUT ] ; then
+  mkdir -p -m 775 $COMOUT  $pcom
+fi
+
+########################################################
+# Execute the script.
+   $HOMEecmwf/scripts/execmwf_awips.sh
+########################################################
+
+if [ -e "$pgmout" ]; then
+   cat $pgmout
+fi
+
+if [ "${KEEPDATA^^}" != YES ]; then
+   rm -rf $DATA
+fi
+
+date

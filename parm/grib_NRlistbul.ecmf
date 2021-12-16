@@ -1,0 +1,24 @@
+grdbul   ECMF      NO OF FILES =  1                                             
+FILE01                                                                          
+HUEA85   EFGH                K              5    850 MB U   T BAND  1
+HVEA85   EFGH                K              5    850 MB V   T BAND  1
+HUAA85   ABCDIJKL            K              1    850 MB U   N HEMI  2
+HVAA85   ABCDIJKL            K              1    850 MB V   N HEMI  2
+HPAA98   ABCDIJKL            K              1    SFC PRES   N HEMI  2
+HHAA50   ABCDIJKL            K              1    500 MB HGT N HEMI  2
+HUAA85   ABCDIJKL            M              1    850 MB U   N HEMI  2
+HVAA85   ABCDIJKL            M              1    850 MB V   N HEMI  2
+HPAA98   ABCDIJKL            M              1    SFC PRES   N HEMI  2           
+HHAA50   ABCDIJKL            M              1    500 MB HGT N HEMI  2
+HUAA85   ABCDIJKL            O              1    850 MB U   N HEMI  2
+HVAA85   ABCDIJKL            O              1    850 MB V   N HEMI  2
+HPAA98   ABCDIJKL            O              1    SFC PRES   N HEMI  2
+HHAA50   ABCDIJKL            O              1    500 MB HGT N HEMI  2
+HUAA85   ABCDIJKL            Q              1    850 MB U   N HEMI  2
+HVAA85   ABCDIJKL            Q              1    850 MB V   N HEMI  2
+HPAA98   ABCDIJKL            Q              1    SFC PRES   N HEMI  2
+HHAA50   ABCDIJKL            Q              1    500 MB HGT N HEMI  2
+HUAA85   ABCDIJKL            S              1    850 MB U   N HEMI  2
+HVAA85   ABCDIJKL            S              1    850 MB V   N HEMI  2
+HPAA98   ABCDIJKL            S              1    SFC PRES   N HEMI  2
+HHAA50   ABCDIJKL            S              1    500 MB HGT N HEMI  2

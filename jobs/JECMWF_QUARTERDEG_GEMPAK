@@ -1,0 +1,87 @@
+#!/bin/ksh
+# JY - will see if need to change ksh to sh
+#
+set -x
+export PS4='$SECONDS + '
+date
+#
+# obtain unique process id (pid) and make temp directories
+#
+export pid=$$
+export jobid=${jobid:-LL${job}.o${pid}}
+export DATA=${DATA:-${DATAROOT}/${jobid}}
+mkdir $DATA
+cd $DATA
+
+export jlogfile=${jlogfile:-${DATA}/jlogfile.${jobid}}
+
+# Specifically for testing ECMWF upgrade where the file name changes 
+# Normally the file ends in 1 with test data that becomes 75
+export ECMWF_FILE_EXT=${ECMWF_FILE_EXT:-1}
+
+####################################
+# Determine Job Output Name on System
+####################################
+export pgmout="OUTPUT.${pid}"
+
+export cycle=t${cyc}z
+
+export SENDCOM=${SENDCOM:-YES}
+export SENDDBN=${SENDDBN:-YES}
+export SENDECF=${SENDECF:-YES}
+
+#
+# Now set up GEMPAK/NTRANS environment
+#
+#done in ecflow script
+#module load gempak 
+
+#
+#Set up Variables
+#
+#export HOMEecmwf=${HOMEecmwf:-${NWROOT}/ecmwf.${ecmwf_ver}}
+export GEMPAKecmwf=${GEMPAKecmwf:-$HOMEecmwf/gempak}
+
+# Run setpdy and initialize PDY variables
+setpdy.sh
+. ./PDY
+
+#
+# Set up model and cycle specific variables
+#
+export NET=ecmwf
+export RUN=ecmwf_qd
+export model=ecmwf_qd
+export DCOMIN=${DCOMROOT}/${PDY}/wgrbbul/ecmwf
+export COMOUT=${COMOUT:-$(compath.py -o ${NET}/${ecmwf_ver}/${NET}.${PDY})/gempak}
+export COMOUTlogs=${COMOUTlogs:-$(compath.py -o ${NET}/${ecmwf_ver}/${NET}.${PDY})/logs}
+env
+
+if [ ! -f $COMOUT ] ; then
+  mkdir -p -m 775 $COMOUT
+fi
+if [ ! -f $COMOUTlogs ] ; then
+  mkdir -p -m 775 $COMOUTlogs
+fi
+
+#
+# Copy in custom GEMPAK tables
+#
+cp $GEMPAKecmwf/fix/ecmwfhr_ecmwfgrib128.tbl.quarterdeg  ecmwfgrib128.tbl
+cp $GEMPAKecmwf/fix/ecmwfhr_vcrdgrib1.tbl vcrdgrib1.tbl
+
+########################################################
+# Execute the script.
+$HOMEecmwf/scripts/execmwf_quarterdeg.sh $PDY $cyc
+########################################################
+
+if [ -e "$pgmout" ]; then
+   cat $pgmout
+fi
+
+if [ "${KEEPDATA}" != "YES" ]; then
+   rm -rf $DATA
+fi
+
+date
+
