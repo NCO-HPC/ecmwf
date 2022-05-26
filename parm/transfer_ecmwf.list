@@ -23,11 +23,11 @@
 # directory are included, so if no exclude patterns match that file, it will be
 # transferred.
 
-com/ecmwf/_ENVIR_/ecmwf._PDY_/
+_COMROOT_/ecmwf/_SHORTVER_/ecmwf._PDY_/
 E
 B 19000
 
-com/ecmwf/_ENVIR_/ecmwf._PDYm1_/
+_COMROOT_/ecmwf/_SHORTVER_/ecmwf._PDYm1_/
 E
 B 19000
 

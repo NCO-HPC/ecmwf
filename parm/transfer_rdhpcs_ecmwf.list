@@ -23,7 +23,7 @@
 # directory are included, so if no exclude patterns match that file, it will be
 # transferred.
 
-com/ecmwf/_ENVIR_/ecmwf._PDY_/  _REMOTEPATH_/com/nawips/_ENVIR_/ecmwf._PDY_/
+_COMROOT_/ecmwf/_SHORTVER_/ecmwf._PDY_/  _REMOTEPATH_/_COMROOT_/nawips/_SHORTVER_/ecmwf._PDY_/
 + /gempak/
 + /gempak/ecmwf_hr_??????????f???
 - *
