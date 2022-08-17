@@ -397,7 +397,8 @@ EOF
     if [ ${#actual_hrs[@]} = ${#fhrs[@]} ] ; then
         echo "All files are in for the .25 degree ECMWF for ${fullddate} ${cycle}Z"
         finished="yes"
-    elif [ ${numfiles} -lt ${#fhrs[@]} ] && [ ${numfiles} -gt 0 ] ; then
+    #elif [ ${numfiles} -lt ${#fhrs[@]} ] && [ ${numfiles} -gt 0 ] ; then
+    elif [ ${numfiles} -lt ${#fhrs[@]} ] ; then
         if [ -s ${COMOUTlogs}/processed_hours_${fullddate}_${cycle} ] ; then
             numprocessed=`cat ${COMOUTlogs}/processed_hours_${fullddate}_${cycle} | wc -l`
             if [ ${numprocessed} -eq ${#fhrs[@]} ] ; then
